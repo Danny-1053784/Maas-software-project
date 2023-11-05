@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>De Maas vervuiling waardes</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>LOCATIE_CODE</th>
+				<th>PARAMETER_OMSCHRIJVING</th>
+				<th>CAS_NR</th>
+				<th>EENHEID_CODE</th>
+				<th>WAARDEBEPALINGSMETHODE_OMSCHRIJVING</th>
+        <th>WAARNEMINGDATUM</th>
+        <th>NUMERIEKEWAARDE</th>
+        <th>ALFANUMERIEKEWAARDE</th>
+        <th>KWALITEITSOORDEEL_CODE</th>
+        <th>BEMONSTERINGSAPPARAAT_OMSCHRIJVING</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in data %}
+			<tr>
+				<td>{{ row['LOCATIE_CODE'] }}</td>
+				<td>{{ row['PARAMETER_OMSCHRIJVING'] }}</td>
+				<td>{{ row['CAS_NR'] }}</td>
+				<td>{{ row['EENHEID_CODE'] }}</td>
+				<td>{{ row['WAARDEBEPALINGSMETHODE_OMSCHRIJVING'] }}</td>
+				<td>{{ row['WAARNEMINGDATUM'] }}</td>
+				<td>{{ row['NUMERIEKEWAARDE'] }}</td>
+				<td>{{ row['ALFANUMERIEKEWAARDE'] }}</td>
+				<td>{{ row['KWALITEITSOORDEEL_CODE'] }}</td>
+				<td>{{ row['BEMONSTERINGSAPPARAAT_OMSCHRIJVING'] }}</td>
+	
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
