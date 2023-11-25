@@ -3,6 +3,21 @@
 <head>
 	<title>De Maas vervuiling waardes</title>
 </head>
+<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+		font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 14px;
+		line-height: 1.4;
+		color: #333;
+		background-color: #fff;
+	}
+	table {
+	
+	}
+	tr:nth-child(even) {background-color: #f2f2f2}
+</style>
 <body>
 	<table>
 		<thead>
@@ -12,10 +27,9 @@
 				<th>CAS_NR</th>
 				<th>EENHEID_CODE</th>
 				<th>WAARDEBEPALINGSMETHODE_OMSCHRIJVING</th>
-        <th>WAARNEMINGDATUM</th>
-        <th>NUMERIEKEWAARDE</th>
-        <th>ALFANUMERIEKEWAARDE</th>
-        <th>KWALITEITSOORDEEL_CODE</th>
+        		<th>WAARNEMINGDATUM</th>
+        		<th>NUMERIEKEWAARDE</th>
+       			<th>KWALITEITSOORDEEL_CODE</th>
         
 			</tr>
 		</thead>
@@ -29,7 +43,6 @@
 				<td>{{ row['WAARDEBEPALINGSMETHODE_OMSCHRIJVING'] }}</td>
 				<td>{{ row['WAARNEMINGDATUM'] }}</td>
 				<td>{{ row['NUMERIEKEWAARDE'] }}</td>
-				<td>{{ row['ALFANUMERIEKEWAARDE'] }}</td>
 				<td>{{ row['KWALITEITSOORDEEL_CODE'] }}</td>
 				
 	
