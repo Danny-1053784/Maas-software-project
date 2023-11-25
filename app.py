@@ -9,7 +9,7 @@ def index():
     with open('deMaas.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=';')
         data = [row for row in reader]
-        print(data)
+        
 
     # Render the template with the data
     return render_template('index.html', data=data)

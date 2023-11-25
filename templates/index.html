@@ -3,6 +3,32 @@
 <head>
 	<title>De Maas vervuiling waardes</title>
 </head>
+<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+		font-family: "Open Sans";
+		font-size: 14px;
+		line-height: 1.4;
+		color: #333;
+		background-color: #fff;
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #ccc;
+		margin: 0;
+		padding: 0;
+	
+	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2
+	}
+	td,tr,th {
+		border: 1px solid #00000042;
+	}
+	
+</style>
 <body>
 	<table>
 		<thead>
@@ -12,11 +38,10 @@
 				<th>CAS_NR</th>
 				<th>EENHEID_CODE</th>
 				<th>WAARDEBEPALINGSMETHODE_OMSCHRIJVING</th>
-        <th>WAARNEMINGDATUM</th>
-        <th>NUMERIEKEWAARDE</th>
-        <th>ALFANUMERIEKEWAARDE</th>
-        <th>KWALITEITSOORDEEL_CODE</th>
-        <th>BEMONSTERINGSAPPARAAT_OMSCHRIJVING</th>
+        		<th>WAARNEMINGDATUM</th>
+        		<th>NUMERIEKEWAARDE</th>
+       			<th>KWALITEITSOORDEEL_CODE</th>
+        
 			</tr>
 		</thead>
 		<tbody>
@@ -29,9 +54,8 @@
 				<td>{{ row['WAARDEBEPALINGSMETHODE_OMSCHRIJVING'] }}</td>
 				<td>{{ row['WAARNEMINGDATUM'] }}</td>
 				<td>{{ row['NUMERIEKEWAARDE'] }}</td>
-				<td>{{ row['ALFANUMERIEKEWAARDE'] }}</td>
 				<td>{{ row['KWALITEITSOORDEEL_CODE'] }}</td>
-				<td>{{ row['BEMONSTERINGSAPPARAAT_OMSCHRIJVING'] }}</td>
+				
 	
 			</tr>
 			{% endfor %}
