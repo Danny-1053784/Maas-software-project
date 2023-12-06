@@ -10,7 +10,7 @@ def index():
         reader = csv.DictReader(csvfile, delimiter=';')
         data = [row for row in reader]
 
-    # Get the page number from the request query parameter
+    # Get the page number from the request query parameters
     page = int(request.args.get('page', 1))
     items_per_page = 200
     start_index = (page - 1) * items_per_page
