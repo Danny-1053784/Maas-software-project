@@ -29,12 +29,14 @@ def index():
 
 
 def search(data): 
-    query_date = request.form.get('query_date')
-    formated_date = datetime.strptime(query_date, '%Y-%m-%d').date() if query_date else None
+    query_date = request.form.get('WAARNEMINGSDATUM')
+    formatted_date = datetime.strptime(query_date, "%Y-%m-%d").date() if query_date else None
 
-    results = [data for data in data if not formated_date or datetime.strptime(data['date'], '%Y-%m-%d').date() == formated_date]
+    results = [date_data for date_data in data if
+               not formatted_date or datetime.strptime(date_data["date"], "%Y-%m-%d").date() == formatted_date]
 
     return render_template('index.html', data=results, query_date=query_date)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
