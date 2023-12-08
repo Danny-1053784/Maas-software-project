@@ -46,51 +46,59 @@
     </style>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>LOCATIE_CODE</th>
-                <th>PARAMETER_OMSCHRIJVING</th>
-                <th>CAS_NR</th>
-                <th>EENHEID_CODE</th>
-                <th>WAARDEBEPALINGSMETHODE_OMSCHRIJVING</th>
-                <th>WAARNEMINGDATUM</th>
-                <th>NUMERIEKEWAARDE</th>
-                <th>KWALITEITSOORDEEL_CODE</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
-            <tr>
-                <td>{{ row['LOCATIE_CODE'] }}</td>
-                <td>{{ row['PARAMETER_OMSCHRIJVING'] }}</td>
-                <td>{{ row['CAS_NR'] }}</td>
-                <td>{{ row['EENHEID_CODE'] }}</td>
-                <td>{{ row['WAARDEBEPALINGSMETHODE_OMSCHRIJVING'] }}</td>
-                <td>{{ row['WAARNEMINGDATUM'] }}</td>
-                <td>{{ row['NUMERIEKEWAARDE'] }}</td>
-                <td>{{ row['KWALITEITSOORDEEL_CODE'] }}</td>
-            </tr>
+    <h1>De Maas vervuiling waardes</h1>
+    <p>Deze pagina laat de vervuiling waardes zien van de Maas.</p>
+    <h1>Search timestamp</h1>
+    <form action= "/search" method="post">
+        <label for="query_date">Search by Date:</label>
+        <input type="date" id="query_date" name="query_date" required>
+        <button type="submit">Search</button>
+    </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>LOCATIE_CODE</th>
+                    <th>PARAMETER_OMSCHRIJVING</th>
+                    <th>CAS_NR</th>
+                    <th>EENHEID_CODE</th>
+                    <th>WAARDEBEPALINGSMETHODE_OMSCHRIJVING</th>
+                    <th>WAARNEMINGDATUM</th>
+                    <th>NUMERIEKEWAARDE</th>
+                    <th>KWALITEITSOORDEEL_CODE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row['LOCATIE_CODE'] }}</td>
+                    <td>{{ row['PARAMETER_OMSCHRIJVING'] }}</td>
+                    <td>{{ row['CAS_NR'] }}</td>
+                    <td>{{ row['EENHEID_CODE'] }}</td>
+                    <td>{{ row['WAARDEBEPALINGSMETHODE_OMSCHRIJVING'] }}</td>
+                    <td>{{ row['WAARNEMINGDATUM'] }}</td>
+                    <td>{{ row['NUMERIEKEWAARDE'] }}</td>
+                    <td>{{ row['KWALITEITSOORDEEL_CODE'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            
+            {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+            <a href="?page={{ p }}" class="active">{{ p }}</a>
+            {% else %}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
             {% endfor %}
-        </tbody>
-    </table>
-    
-    <div class="pagination">
-        {% if page > 1 %}
-        <a href="?page={{ page - 1 }}">Previous</a>
-        {% endif %}
-        
-        {% for p in range(1, total_pages + 1) %}
-        {% if p == page %}
-        <a href="?page={{ p }}" class="active">{{ p }}</a>
-        {% else %}
-        <a href="?page={{ p }}">{{ p }}</a>
-        {% endif %}
-        {% endfor %}
-        
-        {% if page < total_pages %}
-        <a href="?page={{ page + 1 }}">Next</a>
-        {% endif %}
-    </div>
+            
+            {% if page < total_pages %}
+            <a href="?page={{ page + 1 }}">Next</a>
+            {% endif %}
+        </div>
 </body>
 </html>
