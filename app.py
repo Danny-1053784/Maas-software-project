@@ -17,25 +17,33 @@ def index():
     start_index = (page - 1) * items_per_page
     end_index = start_index + items_per_page
 
-    # Get the data for the current page
-    current_data = data[start_index:end_index]
+    # Get the search query from the request query parameters
+    query = request.args.get("query")
 
-    # Calculate the total number of pages
-    total_pages = (len(data) + items_per_page - 1) // items_per_page
+    if query:
+        # Filter the data based on the search query
+        filtered_data = []
+        for row in data:
+            if query.lower() in row["WAARNEMINGDATUM"].lower() or query.lower() in row["PARAMETER_OMSCHRIJVING"].lower():
+                filtered_data.append(row)
+        
+        # Update the total number of pages based on the filtered data
+        total_pages = (len(filtered_data) + items_per_page - 1) // items_per_page
+        
+        # Get the data for the current page
+        current_data = filtered_data[start_index:end_index]
+    else:
+        # Calculate the total number of pages
+        total_pages = (len(data) + items_per_page - 1) // items_per_page
+        
+        # Get the data for the current page
+        current_data = data[start_index:end_index]
+
 
     # Render the template with the data and pagination information
-    return render_template('index.html', data=current_data, page=page, total_pages=total_pages)
+    return render_template('index.html', data=current_data, page=page, total_pages=total_pages, query=query)
 
 
-
-def search(data): 
-    query_date = request.form.get('WAARNEMINGSDATUM')
-    formatted_date = datetime.strptime(query_date, "%Y-%m-%d").date() if query_date else None
-
-    results = [date_data for date_data in data if
-               not formatted_date or datetime.strptime(date_data["date"], "%Y-%m-%d").date() == formatted_date]
-
-    return render_template('index.html', data=results, query_date=query_date)
 
 
 if __name__ == '__main__':
