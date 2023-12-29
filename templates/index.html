@@ -38,6 +38,9 @@
             border: 1px solid #ccc;
             text-decoration: none;
             color: #333;
+            position: relative;
+            display: inline-block;
+            margin-right: -1px;
         }
 
         .pagination a.active {
@@ -47,9 +50,9 @@
 </head>
 <body>
     <h1>De Maas vervuiling waardes</h1>
-    <p>Zoek op WAARNEMINGDATUM.</p>
+    <p>Zoek op WAARNEMINGDATUM of PARAMETER_OMSCHRIJVING.</p>
     <form action="/" method="get">
-        <input type="text" name="query" value="{{ query }}" placeholder="Search..." />
+        <input type="text" name="query" value="{{ query }}" placeholder="tritium" />
         <button type="submit">Search</button>
     </form>
         <table>
