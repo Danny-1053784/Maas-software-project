@@ -47,11 +47,9 @@
 </head>
 <body>
     <h1>De Maas vervuiling waardes</h1>
-    <p>Deze pagina laat de vervuiling waardes zien van de Maas.</p>
-    <h1>Search timestamp</h1>
-    <form action= "/search" method="post">
-        <label for="query_date">Search by Date:</label>
-        <input type="date" id="query_date" name="query_date" required>
+    <p>Zoek op WAARNEMINGDATUM.</p>
+    <form action="/" method="get">
+        <input type="text" name="query" value="{{ query }}" placeholder="Search..." />
         <button type="submit">Search</button>
     </form>
         <table>
