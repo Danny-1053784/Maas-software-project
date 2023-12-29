@@ -23,20 +23,38 @@ def index():
     # Calculate the total number of pages
     total_pages = (len(data) + items_per_page - 1) // items_per_page
 
+
+    #search_results = request.form['search']
+    search_results = request.form.get('WAARNEMINGSDATUM')
+    results = search(search_results)
     # Render the template with the data and pagination information
     return render_template('index.html', data=current_data, page=page, total_pages=total_pages)
 
-
+@app.route('/search', methods=['POST'])
+def results():
+    results = request.args.get('results', [])
+    return render_template('index.html', results=results)
 
 def search(data): 
-    query_date = request.form.get('WAARNEMINGSDATUM')
-    formatted_date = datetime.strptime(query_date, "%Y-%m-%d").date() if query_date else None
+    results = []
+    with open ('deMaas.csv', 'r',newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            for key, value in row.items():
+                if value == 'WAARNEMINGSDATUM':
+                    results.append(row)
+    return results
 
-    results = [date_data for date_data in data if
-               not formatted_date or datetime.strptime(date_data["date"], "%Y-%m-%d").date() == formatted_date]
 
-    return render_template('index.html', data=results, query_date=query_date)
+    '''
+        query_date = request.form.get('WAARNEMINGSDATUM')
+        formatted_date = datetime.strptime(query_date, "%Y-%m-%d").date() if query_date else None
 
+        results = [date_data for date_data in data if
+                not formatted_date or datetime.strptime(date_data["date"], "%Y-%m-%d").date() == formatted_date]
+
+        return render_template('index.html', data=results, query_date=query_date)
+    '''
 
 if __name__ == '__main__':
     app.run(debug=True)

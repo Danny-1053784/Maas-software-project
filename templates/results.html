@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: "Open Sans";
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
+            background-color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            margin: 0;
+            padding: 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td, tr, th {
+            border: 1px solid #00000042;
+        }
+
+        .pagination {
+            margin-top: 10px;
+        }
+
+        .pagination a {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a.active {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Results</h1>
+
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>LOCATIE_CODE</th>
+                    <th>LOCATIE</th>
+                    <th>PARAMETER</th>
+                    <th>WAARDE</th>
+                    <th>TIJDSTIP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.LOCATIE_CODE }}</td>
+                        <td>{{ result.LOCATIE }}</td>
+                        <td>{{ result.PARAMETER }}</td>
+                        <td>{{ result.WAARDE }}</td>
+                        <td>{{ result.TIJDSTIP }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Back to Search</a>
+
+</body>
+</html>
