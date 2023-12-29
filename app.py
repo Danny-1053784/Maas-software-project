@@ -24,7 +24,7 @@ def index():
         # Filter the data based on the search query
         filtered_data = []
         for row in data:
-            if query.lower() in row["WAARNEMINGDATUM"].lower():
+            if query.lower() in row["WAARNEMINGDATUM"].lower() or query.lower() in row["PARAMETER_OMSCHRIJVING"].lower():
                 filtered_data.append(row)
         
         # Update the total number of pages based on the filtered data
