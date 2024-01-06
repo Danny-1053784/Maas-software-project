@@ -86,6 +86,10 @@
         
         <div class="pagination">
             {% if page > 1 %}
+            <a href="?page=1"><<</a>
+            {% endif %}
+
+            {% if page > 1 %}
             <a href="?page={{ page - 1 }}">Previous</a>
             {% endif %}
             
@@ -99,6 +103,10 @@
             
             {% if page < total_pages %}
             <a href="?page={{ page + 1 }}">Next</a>
+            {% endif %}
+
+            {% if page < total_pages %}
+            <a href="?page=100">>></a>
             {% endif %}
         </div>
 </body>
